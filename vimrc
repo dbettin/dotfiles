@@ -74,6 +74,9 @@
  "Add a few paired mappings, in particular [q and ]q to navigate the quickfix list
  Bundle 'tpope/vim-unimpaired'
 
+ " Add python mode support for pep8, pylint, and pydoc
+ Bundle 'klen/python-mode'
+
  filetype plugin indent on 
  
  " Backups and swap
@@ -114,7 +117,7 @@
  set laststatus=2
 
  color codeschool
- set guifont=Monaco:h13
+ set guifont=Inconsolata\ Bold\ 12
 
  " Show (partial) command in the status line
  set showcmd
@@ -186,6 +189,8 @@
  set winheight=5
  set winminheight=5
  set winheight=999
+
+ set lines=60 columns=110
 
  " don't delay when you hit esc in terminal vim, this may make arrow keys not
  " work well when ssh'd in
@@ -281,6 +286,12 @@
  autocmd FileType help exe QuitWithQ()
 
  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " Python mode configuration
+ " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " Disable python folding
+ let g:pymode_folding = 0 
+ 
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  " NerdTree configuration
  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  map <leader>nt :NERDTree<CR>
@@ -299,3 +310,9 @@
 " show quickfix when errors happen
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
+
+" automatically close preview window on exiting insert mode
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" remove toolbar
+set guioptions-=T
