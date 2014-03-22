@@ -1,0 +1,20 @@
+-----------------------------------------
+-- psqlrc file to set psql preferences --
+-----------------------------------------
+
+\set QUIET ON
+
+-- \set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+\set PAGER OFF
+\set HISTFILE ~/.psql_history- :HOST - : DBNAME -- Remove space between : and DBNAME
+\set HISTSIZE 2000
+\set ECHO_HIDDEN OFF
+\set COMP_KEYWORD_CASE upper
+
+\timing
+\pset linestyle unicode
+\pset null ¤
+\pset border 2
+\pset format wrapped
+
+\set QUIET OFF

@@ -2,10 +2,11 @@ alias core='cd ~/g5/core'
 alias api='cd ~/g5/api'
 alias be='bundle exec'
 alias cr='clear'
+alias tmux="TERM=screen-256color-bce tmux"
 
 export EDITOR=vi
 
-# Prompt goodness stolen gist from http://gist.github.com/47267 
+# Prompt goodness stolen gist from http://gist.github.com/47267
 
      YELLOW="\[\033[0;33m\]"
  	  GREEN="\[\033[0;32m\]"
@@ -71,3 +72,11 @@ if [ `id -u` != '0' ]; then
   export PIP_RESPECT_VIRTUALENV=true
 fi
 
+#pythonbrew
+ [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+
+# set -o vi
+
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
