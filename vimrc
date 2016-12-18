@@ -2,101 +2,60 @@
  let mapleader = ","
  filetype off
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
 
- " let Vundle manage Vundle
  " required!
- Bundle 'gmarik/vundle'
+ Plugin 'VundleVim/Vundle.vim'
 
  " tmux integration
- Bundle 'christoomey/vim-tmux-navigator'
+ Plugin 'christoomey/vim-tmux-navigator'
 
  " send to tmux pane
- Bundle 'xaviershay/tslime.vim'
+ Plugin 'xaviershay/tslime.vim'
 
  " original repos on github
- Bundle 'L9'
+ Plugin 'L9'
 
  " super tab for autocompletion
- Bundle 'ervandew/supertab'
+ Plugin 'ervandew/supertab'
 
  " tree based navigation
- Bundle 'scrooloose/nerdtree'
+ Plugin 'scrooloose/nerdtree'
 
  " commenting helpers
- Bundle 'scrooloose/nerdcommenter'
+ Plugin 'scrooloose/nerdcommenter'
 
- " Surrond stuff with things. ysiw" surrounds a word with quotes cs"' changes " to '
- Bundle 'tpope/vim-surround'
+ " Surround stuff with things. ysiw" surrounds a word with quotes cs"' changes " to '
+ Plugin 'tpope/vim-surround'
 
  " Shows syntax errors on several types of files
- Bundle 'scrooloose/syntastic'
-
- " Scala support
- Bundle 'derekwyatt/vim-scala'
-
- " Run specs or cucumber features with ,t run only the test under the cursor
- " with ,T also remembers last run test so you can hit it again on non-test
- " files to run the last run test
- "Bundle 'skalnik/vim-vroom'
-
- " Updated ruby syntax and such
- "Bundle 'vim-ruby/vim-ruby'
-
- " Some syntax highlighthing for rails and :Rextract to extract partials
- "Bundle 'tpope/vim-rails'
-
- " Improved javascript indentation
- Bundle 'pangloss/vim-javascript'
+ Plugin 'scrooloose/syntastic'
 
  " Open a file (like cmd-t but better). Use ,f or ,j(something, see bindings below)
- Bundle 'kien/ctrlp.vim'
+ Plugin 'kien/ctrlp.vim'
 
  " Adds :Ack complete w/ quick fix
- Bundle 'mileszs/ack.vim'
+ Plugin 'mileszs/ack.vim'
 
  " Makes css colors show up as their actual colors, works better with CSApprox or macvim
- Bundle 'ap/vim-css-color'
+ Plugin 'ap/vim-css-color'
 
  " Codeschool theme port
- Bundle '29decibel/codeschool-vim-theme'
+ Plugin '29decibel/codeschool-vim-theme'
 
  " Hybrid theme port
- Bundle 'w0ng/vim-hybrid'
-
- " Add python mode support for pep8, pylint, and pydoc
- " Bundle 'klen/python-mode'
+ Plugin 'w0ng/vim-hybrid'
 
  " Vim statusline/tabline that is light as air
- Bundle 'bling/vim-airline'
-
- " Golang Bundles
- Bundle 'jnwhiteh/vim-golang'
- Bundle 'Blackrush/vim-gocode'
-
- " Dart Support
- Bundle 'dart-lang/dart-vim-plugin'
-
- " Time tracking
- " need api key during install
- Bundle 'wakatime/vim-wakatime'
+ Plugin 'bling/vim-airline'
 
  " Ag searches text in files
  " Note: dependency on 'the_silver_searcher' to install on Mac
  " brew install the_silver_searcher
- Bundle 'rking/ag.vim'
+ Plugin 'rking/ag.vim'
 
- " Clojure vim files
- Bundle 'guns/vim-clojure-static'
- "Bundle 'kien/rainbow_parentheses.vim'
- Bundle 'amdt/vim-niji'
- Bundle 'tpope/vim-fireplace'
- Bundle 'kovisoft/paredit'
- Bundle 'typedclojure/vim-typedclojure'
-
- " Julia vim files
- Bundle 'JuliaLang/julia-vim'
+ call vundle#end()
 
  filetype plugin indent on
 
@@ -176,9 +135,6 @@
  " Use Node.js for JavaScript interpretation
  let $JS_CMD='node'
 
- " MacVIM shift+arrow-keys behavior (required in .vimrc)
- let macvim_hig_shift_movement = 1
-
  "map quick quit
  map <leader>qq :qa!<cr>
 
@@ -209,15 +165,6 @@
  map <Right> :echo "no!"<cr>
  map <Up> :echo "no!"<cr>
  map <Down> :echo "no!"<cr>
-
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- " Vroom
- " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- let g:vroom_map_keys = 0
- let g:vroom_write_all = 1
- let g:vroom_use_bundle_exec = 0
- map <leader>tt :VroomRunTestFile<cr>
- map <leader>T :VroomRunNearestTest<cr>
 
  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  " " Airline
@@ -275,16 +222,3 @@ autocmd BufWritePre * :%s/\s\+$//e
 " autocomplete configuration
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabClosePreviewOnPopupClose = 1
-
-" go settings
-set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
-autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
-au FileType go au BufWritePre <buffer> Fmt
-au BufWritePost *.go silent! !ctags -f $GOPATH/tags -R &
-nmap <leader>r :!tmux send-keys -t 2 C-c <cr> :call Send_to_Tmux("clear; go run ".expand("%")."\n") <cr>
-nmap <Leader>t :!tmux send-keys -t 2 C-c <cr> :call Send_to_Tmux("clear; go test -cover ./...\n") <cr>
-nmap <Leader>i :!tmux send-keys -t 2 C-c <cr> :call Send_to_Tmux("clear; go install\n") <cr>
-nmap <Leader>b :!tmux send-keys -t 2 C-c <cr> :call Send_to_Tmux("clear; go build ./...\n") <cr>
-nmap <Leader>d :Godoc <cr>
-
-" clojure settings
