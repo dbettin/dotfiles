@@ -1,0 +1,7 @@
+session_name: weechat
+windows:
+    - window_name: weechat
+      layout: tiled
+      panes:
+          - shell_command:
+              - weechat

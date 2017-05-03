@@ -1,0 +1,12 @@
+session_name: tagnifi-job-earnings-releases
+windows:
+    - window_name: dev window
+      layout: c447,380x78,0,0{190x78,0,0[190x29,0,0,42,190x48,0,30,47],189x78,191,0,46}
+      shell_command_before:
+          - cd ~/dev/tagnifi/job-earnings-releases
+      panes:
+          - blank
+          - shell_command:
+              - cargo watch
+          - shell_command:
+              - kak Cargo.toml
