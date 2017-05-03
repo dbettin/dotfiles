@@ -1,4 +1,4 @@
-colorscheme base16_embers
+colorscheme base16
 
 # make it dark
 face Default          default,default
