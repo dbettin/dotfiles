@@ -1,8 +1,0 @@
-session_name: tagnifi-job-xbrl
-windows:
-    - window_name: dev window
-      layout: tiled
-      shell_command_before:
-          - cd ~/dev/tagnifi/job-xbrl
-      panes:
-          - blank

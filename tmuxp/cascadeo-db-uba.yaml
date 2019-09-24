@@ -1,8 +1,0 @@
-session_name: cascadeo-db-uba
-windows:
-    - window_name: dev window
-      layout: tiled
-      shell_command_before:
-          - cd ~/dev/cascadeo/db-uba
-      panes:
-          - blank

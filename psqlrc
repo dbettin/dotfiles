@@ -7,11 +7,12 @@
 -- \set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
 \set PAGER OFF
 \set HISTFILE ~/.psql_history- :HOST - : DBNAME -- Remove space between : and DBNAME
-\set HISTSIZE 2000
+\set HISTSIZE 100000
 \set ECHO_HIDDEN OFF
 \set COMP_KEYWORD_CASE upper
 
 \timing
+\x auto
 \pset linestyle unicode
 \pset null ¤
 \pset border 2
