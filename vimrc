@@ -42,6 +42,9 @@
  Plugin 'ap/vim-css-color'
 
  " Codeschool theme port
+ Plugin  'liuchengxu/space-vim-dark'
+
+ " SpaceDark theme port
  Plugin '29decibel/codeschool-vim-theme'
 
  " Hybrid theme port
@@ -94,7 +97,7 @@
  set laststatus=2
 
  set background=dark
- color hybrid
+ color space-vim-dark
  set guifont=Monaco:h13
 
  " Show (partial) command in the status line
