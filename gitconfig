@@ -31,4 +31,4 @@
 [core]
 	editor = /usr/bin/vim
 [credential]
-	helper = cache --timeout=7200
+	helper = store

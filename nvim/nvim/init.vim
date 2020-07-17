@@ -18,22 +18,13 @@ Plug 'scrooloose/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
-Plug 'fatih/vim-go'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
-Plug 'posva/vim-vue'
-Plug 'leafgarland/typescript-vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'pangloss/vim-javascript'
 Plug 'cespare/vim-toml'
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-Plug 'omnisharp/omnisharp-vim'
-
 
 " colorschemes
 Plug 'joshdick/onedark.vim'
@@ -44,9 +35,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-corvine'
 
-
 call plug#end()
-
 
 " Colorscheme config
 set termguicolors     " enable true colors support
@@ -54,15 +43,6 @@ set termguicolors     " enable true colors support
 let ayucolor="dark" " for mirage version of theme
 "let ayucolor="dark"   " for dark version of theme
 colorscheme corvine
-
-" prettier config
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-" omnisharp config
-let g:OmniSharp_server_stdio = 1
 
 " Lightline config
 let g:lightline = {
@@ -81,7 +61,7 @@ let g:lightline = {
 "Skim config
 set rtp+=~/.skim
 command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
-map ; :Files<CR>
+map ; :GitFiles<CR>
 map ;b :Buffers<CR>
 "let g:fzf_layout = { 'window': 'enew' }
 "let g:fzf_layout = { 'window': '-tabnew' }
@@ -123,6 +103,7 @@ if maparg('<C-L>', 'n') ==# ''
 endif
 
 
+let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
 map <leader>qq :qa!<cr>
 
@@ -189,9 +170,35 @@ if executable('rg')
   nnoremap <leader>/ :Rg<SPACE>
 endif
 
-"
-"""" recommended coc settings
 
+" coc global extensions
+let g:coc_global_extensions = [
+\ 'coc-tsserver',
+\ 'coc-rust-analyzer',
+\ 'coc-json',
+\ 'coc-css',
+\ 'coc-cssmodules',
+\ 'coc-emmet',
+\ 'coc-go',
+\ 'coc-html',
+\ 'coc-sql',
+\ 'coc-xml',
+\ 'coc-vetur',
+\ 'coc-yaml'
+\ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+"""" recommended coc settings
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -224,8 +231,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -248,6 +255,9 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -268,7 +278,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>do  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 

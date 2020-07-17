@@ -1,3 +1,24 @@
 {
-        "codeLens.enable": true
+  "codeLens.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptvue", "typescript", "typescriptvue"],
+  "prettier.disableSuccessMessage": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+          "javascript",
+          "javascriptvue",
+          "typescript",
+          "typescriptvue"
+  ],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    }
+  }
 }

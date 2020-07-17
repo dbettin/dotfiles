@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/davebettin/dotfiles/nvim'
+let g:netrw_dirhist_9='/home/davebettin'
+let g:netrw_dirhist_8='/home/davebettin/.pki/nssdb'
+let g:netrw_dirhist_7='/home/davebettin/.pki'
+let g:netrw_dirhist_6='/home/davebettin'
+let g:netrw_dirhist_5='/home/davebettin/dev/tagnifi/platform'
+let g:netrw_dirhist_4='/home/davebettin/dev/tagnifi/platform/tests'
+let g:netrw_dirhist_3='/home/davebettin/dev/tagnifi/platform/tests/test'
+let g:netrw_dirhist_2='/home/davebettin/dev/tagnifi/platform/tests'
 let g:netrw_dirhist_1='/home/davebettin/dev/tagnifi/services-rust'
